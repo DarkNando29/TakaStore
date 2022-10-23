@@ -1,11 +1,25 @@
-const mongoose = require('mongoose');
+const {Schema, model} = require("../db/connection") // import Schema & model
+
+// Review Schema
 const reviewSchema = new mongoose.Schema({
-    body: String,
-    author: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    date: Date,
-    point: Number,
+    email: String,
+    password: String,
+    username: String,
+    post: [
+        {
+            type: mongoose.Schema.Types.ObjectID,
+            ref: 'Post'
+        }
+    ],
+    post: [
+        {
+            type: mongoose.Schema.Types.ObjectID,
+            ref: 'Review'
+        }
+    ],
 })
-module.exports = mongoose.model('Review',reviewSchema)
+
+// Review model
+const Review = model("Review", reviewSchema)
+
+module.exports = Review

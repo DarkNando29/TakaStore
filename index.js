@@ -5,7 +5,8 @@ const postController = require('./controllers/postController');
 const reviewController = require('./controllers/reviewController');
 //middlewares
 app.use(express.json());
-
+app.use(cors()) // add cors headers
+app.use(morgan("tiny")) // log the request for debugging
 
 //adding routes
 app.use('/users', userController);

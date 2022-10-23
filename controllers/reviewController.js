@@ -1,44 +1,45 @@
 const express = require('express');
+const { isLoggedIn } = require("./middleware"); // import isLoggedIn custom middleware
 const router = express.Router();
 
 
 router
-    .get('/', (req, res) => {
+    .get('/', isLoggedIn, (req, res) => {
         // index
         res
             .status(200)
             .json({msg: `It's a GET request`})
     })
-    .get('/new', (req, res) => {
+    .get('/new', isLoggedIn, (req, res) => {
         // new
         res
             .status(200)
             .json({msg: `It's a GET request`})
     })
-    .post('/', (req, res) => {
+    .post('/', isLoggedIn, (req, res) => {
         // create
         res
             .status(200)
             .json({msg: `It's a POST request.`});
     })
-    .get('/:id', (req, res) => {
+    .get('/:id', isLoggedIn, (req, res) => {
         // show
         res
             .status(200)
             .json({msg: `It's a GET request`})
     })
-    .get('/:id/edit', (req, res) => {
+    .get('/:id/edit', isLoggedIn, (req, res) => {
         // edit
         res
             .status(200)
             .json({msg: `It's a GET request`})
     })
-    .put(`/:id`, function (req, res) {
+    .put(`/:id`, isLoggedIn, function (req, res) {
         res
             .status(200)
             .json({msg: `It's a PUT request.`});
     })
-    .delete(`/:id`, function (req, res) {
+    .delete(`/:id`, isLoggedIn, function (req, res) {
         res
             .status(200)
             .json({msg: `It's a DELETE request.`});
